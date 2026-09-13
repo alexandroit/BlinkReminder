@@ -1,0 +1,10 @@
+{
+  "innoAppId": "9f9469e8-a12f-49e7-9120-555abdf43c5a",
+  "packageName": "BlinkReminder.Development",
+  "packagePublisher": "CN=BlinkReminder.Development",
+  "storeIdentityConfigured": false,
+  "notificationActivatorId": "33bb8be5-b7ee-4c83-a868-f42bdc230fd1",
+  "startupTaskId": "BlinkReminder.Startup",
+  "executable": "BlinkReminder.exe",
+  "installDirectoryName": "BlinkReminder"
+}

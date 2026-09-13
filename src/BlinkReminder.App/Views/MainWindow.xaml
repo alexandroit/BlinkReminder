@@ -1,0 +1,233 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:BlinkReminder.App" x:Class="BlinkReminder.App.Views.MainWindow" Title="{local:Text AppName}" Width="1040" Height="820" MinWidth="780" MinHeight="600" WindowStartupLocation="CenterScreen">
+  <DockPanel Margin="24">
+    <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
+      <TextBlock Text="{local:Text AppName}" FontSize="30" FontWeight="SemiBold"/>
+      <TextBlock Text="{local:Text Tagline}" Foreground="{DynamicResource MutedBrush}" Margin="0,5,0,0"/>
+    </StackPanel>
+    <StackPanel DockPanel.Dock="Bottom" Margin="0,12,0,0">
+      <TextBlock Text="{Binding Feedback}" AutomationProperties.LiveSetting="Assertive" Margin="0,0,0,8"/>
+      <DockPanel>
+        <Button DockPanel.Dock="Right" Content="{local:Text Exit}" Command="{Binding ExitCommand}"/>
+        <Button DockPanel.Dock="Right" Content="{local:Text Save}" Click="SaveClick" FontWeight="SemiBold"/>
+        <TextBlock Text="{local:Text CloseHelp}" VerticalAlignment="Center" Foreground="{DynamicResource MutedBrush}"/>
+      </DockPanel>
+    </StackPanel>
+    <TabControl>
+      <TabItem Header="{local:Text Overview}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20">
+          <StackPanel>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text Welcome}" Style="{StaticResource Heading}"/>
+                <TextBlock Text="{local:Text WelcomeBody}" Style="{StaticResource Help}"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{Binding Status}" FontSize="24" FontWeight="SemiBold" AutomationProperties.LiveSetting="Polite"/>
+                <TextBlock Text="{local:Text Next}" Margin="0,16,0,4"/>
+                <TextBlock Text="{Binding NextReminder}" FontSize="19"/>
+                <TextBlock Text="{local:Text CurrentMessage}" Margin="0,16,0,4"/>
+                <TextBlock Text="{Binding LastMessage}" AutomationProperties.LiveSetting="Polite"/>
+                <WrapPanel>
+                  <Button Content="{local:Text Preview}" Command="{Binding PreviewCommand}"/>
+                  <Button Content="{local:Text Pause15}" Command="{Binding PauseCommand}"/>
+                  <Button Content="{local:Text Resume}" Command="{Binding ResumeCommand}"/>
+                  <Button Content="{local:Text Snooze}" Command="{Binding SnoozeCommand}"/>
+                </WrapPanel>
+                <WrapPanel>
+                  <Button Content="{local:Text Dismiss}" Command="{Binding DismissCommand}"/>
+                  <Button Content="{local:Text Confirm}" Command="{Binding ConfirmCommand}"/>
+                </WrapPanel>
+                <CheckBox Content="{local:Text ManualPresentation}" IsChecked="{Binding ManualPresentation}"/>
+                <TextBlock Text="{local:Text PauseHelp}" Style="{StaticResource Help}"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="{local:Text Reminders}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20">
+          <StackPanel>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text Blink}" Style="{StaticResource Heading}"/>
+                <CheckBox Content="{local:Text EnableBlink}" IsChecked="{Binding Settings.Blink.Enabled}"/>
+                <Label Content="{local:Text Interval}" Target="{Binding ElementName=Input1}"/>
+                <TextBox x:Name="Input1" AutomationProperties.Name="{local:Text Interval}" Text="{Binding BlinkInterval, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text Duration}" Target="{Binding ElementName=Input2}"/>
+                <TextBox x:Name="Input2" AutomationProperties.Name="{local:Text Duration}" Text="{Binding BlinkDuration, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text Message}" Target="{Binding ElementName=Input3}"/>
+                <TextBox x:Name="Input3" AutomationProperties.Name="{local:Text Message}" Text="{Binding Settings.Blink.Message, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" AcceptsReturn="True" MinHeight="70" MaxLength="240" TextWrapping="Wrap"/>
+                <CheckBox Content="{local:Text Countdown}" IsChecked="{Binding Settings.Blink.ShowCountdown}"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text VisualBreak}" Style="{StaticResource Heading}"/>
+                <CheckBox Content="{local:Text EnableBreak}" IsChecked="{Binding Settings.VisualBreak.Enabled}"/>
+                <Label Content="{local:Text Interval}" Target="{Binding ElementName=Input4}"/>
+                <TextBox x:Name="Input4" AutomationProperties.Name="{local:Text Interval}" Text="{Binding BreakInterval, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text Duration}" Target="{Binding ElementName=Input5}"/>
+                <TextBox x:Name="Input5" AutomationProperties.Name="{local:Text Duration}" Text="{Binding BreakDuration, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text Message}" Target="{Binding ElementName=Input6}"/>
+                <TextBox x:Name="Input6" AutomationProperties.Name="{local:Text Message}" Text="{Binding Settings.VisualBreak.Message, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" AcceptsReturn="True" MinHeight="70" MaxLength="240" TextWrapping="Wrap"/>
+                <CheckBox Content="{local:Text Countdown}" IsChecked="{Binding Settings.VisualBreak.ShowCountdown}"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="{local:Text Appearance}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20">
+          <StackPanel>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text Appearance}" Style="{StaticResource Heading}"/>
+                <Label Content="{local:Text PresentationMode}" Target="{Binding ElementName=Choice7}"/>
+                <ComboBox x:Name="Choice7" AutomationProperties.Name="{local:Text PresentationMode}" ItemsSource="{Binding PresentationModes}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding Settings.Appearance.PresentationMode}"/>
+                <Label Content="{local:Text Position}" Target="{Binding ElementName=Choice8}"/>
+                <ComboBox x:Name="Choice8" AutomationProperties.Name="{local:Text Position}" ItemsSource="{Binding Positions}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding Settings.Appearance.Position}"/>
+                <Label Content="{local:Text Monitor}" Target="{Binding ElementName=Choice9}"/>
+                <ComboBox x:Name="Choice9" AutomationProperties.Name="{local:Text Monitor}" ItemsSource="{Binding MonitorModes}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding Settings.Appearance.Monitor}"/>
+                <Label Content="{local:Text SelectedMonitor}" Target="{Binding ElementName=SelectedMonitor}"/>
+                <ComboBox x:Name="SelectedMonitor" ItemsSource="{Binding Monitors}" SelectedItem="{Binding Settings.Appearance.MonitorDeviceName}" AutomationProperties.Name="{local:Text SelectedMonitor}"/>
+                <Label Content="{local:Text Margin}" Target="{Binding ElementName=Input10}"/>
+                <TextBox x:Name="Input10" AutomationProperties.Name="{local:Text Margin}" Text="{Binding BannerMargin, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text FontSize}" Target="{Binding ElementName=Input11}"/>
+                <TextBox x:Name="Input11" AutomationProperties.Name="{local:Text FontSize}" Text="{Binding BannerFontSize, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text Theme}" Target="{Binding ElementName=Choice12}"/>
+                <ComboBox x:Name="Choice12" AutomationProperties.Name="{local:Text Theme}" ItemsSource="{Binding Themes}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding Settings.Appearance.Theme}"/>
+                <CheckBox Content="{local:Text Animations}" IsChecked="{Binding Settings.Appearance.AnimationsEnabled}"/>
+                <CheckBox Content="{local:Text Sound}" IsChecked="{Binding Settings.Appearance.SoundEnabled}"/>
+                <TextBlock Text="{local:Text BannerHelp}" Style="{StaticResource Help}"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="{local:Text Schedule}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20">
+          <StackPanel>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text Schedule}" Style="{StaticResource Heading}"/>
+                <CheckBox Content="{local:Text EnableSchedule}" IsChecked="{Binding Settings.Schedule.Enabled}"/>
+                <ItemsControl ItemsSource="{Binding Days}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel/>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <CheckBox Content="{Binding Label}" IsChecked="{Binding Selected}"/>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Label Content="{local:Text Start}" Target="{Binding ElementName=Input15}"/>
+                <TextBox x:Name="Input15" AutomationProperties.Name="{local:Text Start}" Text="{Binding StartTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <Label Content="{local:Text End}" Target="{Binding ElementName=Input16}"/>
+                <TextBox x:Name="Input16" AutomationProperties.Name="{local:Text End}" Text="{Binding EndTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <TextBlock Text="{local:Text ScheduleHelp}" Style="{StaticResource Help}"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text QuietPeriods}" Style="{StaticResource Heading}"/>
+                <ItemsControl ItemsSource="{Binding QuietPeriods}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,8" Padding="12">
+                        <StackPanel>
+                          <CheckBox Content="{local:Text Enabled}" IsChecked="{Binding Enabled}"/>
+                          <Label Content="{local:Text Start}" Target="{Binding ElementName=Input13}"/>
+                          <TextBox x:Name="Input13" AutomationProperties.Name="{local:Text Start}" Text="{Binding Start, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                          <Label Content="{local:Text End}" Target="{Binding ElementName=Input14}"/>
+                          <TextBox x:Name="Input14" AutomationProperties.Name="{local:Text End}" Text="{Binding End, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                          <ItemsControl ItemsSource="{Binding Days}">
+                            <ItemsControl.ItemsPanel>
+                              <ItemsPanelTemplate>
+                                <WrapPanel/>
+                              </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                              <DataTemplate>
+                                <CheckBox Content="{Binding Label}" IsChecked="{Binding Selected}"/>
+                              </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                          </ItemsControl>
+                          <Button Content="{local:Text Remove}" Command="{Binding RemoveCommand}"/>
+                        </StackPanel>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="{local:Text AddQuiet}" Command="{Binding AddQuietCommand}"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="{local:Text Privacy}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20">
+          <StackPanel>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text Privacy}" Style="{StaticResource Heading}"/>
+                <TextBlock Text="{local:Text PrivacyBody}" Style="{StaticResource Help}"/>
+                <CheckBox Content="{local:Text Startup}" IsChecked="{Binding Settings.StartWithWindows}"/>
+                <TextBlock Text="{local:Text StartupHelp}" Style="{StaticResource Help}"/>
+                <TextBlock Text="{Binding StartupStatus}"/>
+                <CheckBox Content="{local:Text Idle}" IsChecked="{Binding Settings.PauseWhenIdle}"/>
+                <Label Content="{local:Text IdleMinutes}" Target="{Binding ElementName=Input17}"/>
+                <TextBox x:Name="Input17" AutomationProperties.Name="{local:Text IdleMinutes}" Text="{Binding IdleThreshold, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <TextBlock Text="{local:Text IdleHelp}" Style="{StaticResource Help}"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <CheckBox Content="{local:Text Statistics}" IsChecked="{Binding Settings.StatisticsEnabled}"/>
+                <TextBlock Text="{local:Text StatisticsHelp}" Style="{StaticResource Help}"/>
+                <TextBlock Text="{Binding Counts}" Margin="0,8"/>
+                <Button Content="{local:Text ClearData}" Command="{Binding ClearDataCommand}"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text ExportHelp}" Style="{StaticResource Help}"/>
+                <WrapPanel>
+                  <Button Content="{local:Text ImportSettings}" Command="{Binding ImportCommand}"/>
+                  <Button Content="{local:Text ExportSettings}" Command="{Binding ExportCommand}"/>
+                  <Button Content="{local:Text ExportDiagnostics}" Command="{Binding ExportDiagnosticsCommand}"/>
+                </WrapPanel>
+                <Button Content="{local:Text Reset}" Command="{Binding ResetCommand}"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+      <TabItem Header="{local:Text About}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20">
+          <StackPanel>
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="{local:Text AppName}" Style="{StaticResource Heading}"/>
+                <TextBlock Text="{local:Text Version}" Style="{StaticResource Help}"/>
+                <TextBlock Text="{local:Text Disclaimer}" Style="{StaticResource Help}"/>
+                <Label Content="{local:Text Language}" Target="{Binding ElementName=Choice18}"/>
+                <ComboBox x:Name="Choice18" AutomationProperties.Name="{local:Text Language}" ItemsSource="{Binding Languages}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding Language}"/>
+                <WrapPanel>
+                  <Button Content="{local:Text Source}" Command="{Binding SourceCommand}"/>
+                  <Button Content="{local:Text Releases}" Command="{Binding ReleasesCommand}"/>
+                </WrapPanel>
+                <TextBlock Text="{local:Text ReleaseHelp}" Style="{StaticResource Help}"/>
+                <TextBlock Text="{local:Text PlatformNote}" Style="{StaticResource Help}"/>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>

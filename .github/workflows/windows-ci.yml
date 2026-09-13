@@ -1,0 +1,56 @@
+name: Windows validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: windows-ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: windows-2025
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          global-json-file: global.json
+      - name: Generate neutral build assets
+        run: ./build/Generate-Assets.ps1
+      - name: Restore
+        run: ./build/Restore.ps1
+      - name: Compile
+        run: ./build/Build.ps1
+      - name: Test
+        run: ./build/Test.ps1
+      - name: Publish self-contained application
+        run: ./build/Publish.ps1
+      - name: Install verified Inno Setup compiler
+        run: ./build/Install-InnoSetup.ps1
+      - name: Create unsigned installers
+        run: |
+          ./build/Package-Exe.ps1
+          ./build/Package-Msix.ps1
+          ./build/Write-ArtifactManifest.ps1
+      - name: Upload unsigned engineering artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: BlinkReminder-win-x64-unsigned-${{ github.sha }}
+          path: |
+            artifacts/installers/*
+            artifacts/test-results/*
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload test results on failure
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: test-failures-${{ github.run_id }}
+          path: artifacts/test-results/*
+          if-no-files-found: ignore

@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>BlinkReminder</value>
+  </data>
+  <data name="Tagline" xml:space="preserve">
+    <value>De petits rappels. À votre rythme.</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Reminders" xml:space="preserve">
+    <value>Rappels</value>
+  </data>
+  <data name="Appearance" xml:space="preserve">
+    <value>Apparence</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Horaire</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Confidentialité</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Configurez vos premiers rappels</value>
+  </data>
+  <data name="WelcomeBody" xml:space="preserve">
+    <value>Vérifiez les options et sélectionnez Enregistrer et activer. Fermer cette fenêtre conserve l’application dans la zone de notification; Quitter arrête tous les rappels.</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Enregistrer et activer</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Préférences enregistrées. Un nouvel intervalle commence maintenant.</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Aperçu</value>
+  </data>
+  <data name="Pause15" xml:space="preserve">
+    <value>Pause de 15 minutes</value>
+  </data>
+  <data name="Pause30" xml:space="preserve">
+    <value>Pause de 30 minutes</value>
+  </data>
+  <data name="Pause60" xml:space="preserve">
+    <value>Pause d’une heure</value>
+  </data>
+  <data name="PauseTomorrow" xml:space="preserve">
+    <value>Pause jusqu’à demain</value>
+  </data>
+  <data name="PauseForever" xml:space="preserve">
+    <value>Pause indéfinie</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Reprendre</value>
+  </data>
+  <data name="Snooze" xml:space="preserve">
+    <value>Reporter de 5 minutes</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Fermer le rappel</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirmer le rappel</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Ouvrir les paramètres</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Prochain rappel</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Rappels actifs</value>
+  </data>
+  <data name="Presenting" xml:space="preserve">
+    <value>Rappel en cours</value>
+  </data>
+  <data name="NotScheduled" xml:space="preserve">
+    <value>Aucun rappel prévu</value>
+  </data>
+  <data name="CurrentMessage" xml:space="preserve">
+    <value>Dernier rappel</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="Pause_SetupIncomplete" xml:space="preserve">
+    <value>Configuration requise</value>
+  </data>
+  <data name="Pause_Manual" xml:space="preserve">
+    <value>Pause manuelle</value>
+  </data>
+  <data name="Pause_Snoozed" xml:space="preserve">
+    <value>Reporté</value>
+  </data>
+  <data name="Pause_OutsideSchedule" xml:space="preserve">
+    <value>En dehors de l’horaire</value>
+  </data>
+  <data name="Pause_QuietPeriod" xml:space="preserve">
+    <value>Période silencieuse</value>
+  </data>
+  <data name="Pause_Locked" xml:space="preserve">
+    <value>Session verrouillée</value>
+  </data>
+  <data name="Pause_Suspended" xml:space="preserve">
+    <value>Ordinateur en veille</value>
+  </data>
+  <data name="Pause_Presentation" xml:space="preserve">
+    <value>Mode présentation</value>
+  </data>
+  <data name="Pause_WindowsSuppression" xml:space="preserve">
+    <value>Windows bloque les interruptions</value>
+  </data>
+  <data name="Pause_UnknownSessionState" xml:space="preserve">
+    <value>État de session indisponible</value>
+  </data>
+  <data name="Pause_Idle" xml:space="preserve">
+    <value>Pause pour inactivité</value>
+  </data>
+  <data name="Pause_RemindersDisabled" xml:space="preserve">
+    <value>Rappels désactivés</value>
+  </data>
+  <data name="ManualPresentation" xml:space="preserve">
+    <value>Mode présentation : pause tant que cette option est cochée</value>
+  </data>
+  <data name="PauseHelp" xml:space="preserve">
+    <value>La reprise ou la fin d’un report commence un intervalle complet. Les rappels manqués ne s’accumulent pas.</value>
+  </data>
+  <data name="Blink" xml:space="preserve">
+    <value>Clignement</value>
+  </data>
+  <data name="VisualBreak" xml:space="preserve">
+    <value>Pause visuelle</value>
+  </data>
+  <data name="EnableBlink" xml:space="preserve">
+    <value>Activer les rappels de clignement</value>
+  </data>
+  <data name="EnableBreak" xml:space="preserve">
+    <value>Activer les pauses visuelles</value>
+  </data>
+  <data name="Interval" xml:space="preserve">
+    <value>Intervalle (minutes, 1–1440)</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Durée (secondes, 2–600)</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message (240 caractères maximum)</value>
+  </data>
+  <data name="Countdown" xml:space="preserve">
+    <value>Afficher le compte à rebours dans la bannière</value>
+  </data>
+  <data name="DefaultBlink" xml:space="preserve">
+    <value>Un petit rappel de cligner doucement des yeux.</value>
+  </data>
+  <data name="DefaultBreak" xml:space="preserve">
+    <value>Prenez une courte pause visuelle.</value>
+  </data>
+  <data name="PresentationMode" xml:space="preserve">
+    <value>Mode d’affichage</value>
+  </data>
+  <data name="ModeBanner" xml:space="preserve">
+    <value>Bannière discrète</value>
+  </data>
+  <data name="ModeNative" xml:space="preserve">
+    <value>Notification Windows</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="TopCenter" xml:space="preserve">
+    <value>En haut au centre</value>
+  </data>
+  <data name="TopLeft" xml:space="preserve">
+    <value>En haut à gauche</value>
+  </data>
+  <data name="TopRight" xml:space="preserve">
+    <value>En haut à droite</value>
+  </data>
+  <data name="Monitor" xml:space="preserve">
+    <value>Écran</value>
+  </data>
+  <data name="MonitorActive" xml:space="preserve">
+    <value>Écran de la fenêtre active</value>
+  </data>
+  <data name="MonitorPrimary" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="MonitorSelected" xml:space="preserve">
+    <value>Écran choisi</value>
+  </data>
+  <data name="SelectedMonitor" xml:space="preserve">
+    <value>Écran choisi (principal si déconnecté)</value>
+  </data>
+  <data name="Margin" xml:space="preserve">
+    <value>Marge (0–200)</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Taille du texte (12–36)</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thème</value>
+  </data>
+  <data name="ThemeSystem" xml:space="preserve">
+    <value>Système</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Sombre</value>
+  </data>
+  <data name="Animations" xml:space="preserve">
+    <value>Animation brève (respecte les mouvements réduits)</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Son facultatif</value>
+  </data>
+  <data name="BannerHelp" xml:space="preserve">
+    <value>La bannière laisse passer les clics et ne prend pas le focus. Les actions sont accessibles ici et dans la zone de notification. Les notifications suivent les préférences Windows, sans basculer automatiquement vers une bannière.</value>
+  </data>
+  <data name="EnableSchedule" xml:space="preserve">
+    <value>Limiter aux jours et heures ci-dessous</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Début (HH:mm)</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Fin (HH:mm)</value>
+  </data>
+  <data name="QuietPeriods" xml:space="preserve">
+    <value>Périodes silencieuses</value>
+  </data>
+  <data name="AddQuiet" xml:space="preserve">
+    <value>Ajouter une période</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="ScheduleHelp" xml:space="preserve">
+    <value>Heure locale. Une période qui traverse minuit appartient à son jour de début. Des heures identiques couvrent 24 heures.</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Lun</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Mer</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Jeu</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Ven</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Sam</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Dim</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Démarrer avec Windows (cet utilisateur seulement)</value>
+  </data>
+  <data name="StartupHelp" xml:space="preserve">
+    <value>Cochez cette option puis enregistrez pour autoriser. Si le démarrage est désactivé dans Windows, modifiez les paramètres Windows.</value>
+  </data>
+  <data name="Idle" xml:space="preserve">
+    <value>Pause pour inactivité (facultatif)</value>
+  </data>
+  <data name="IdleMinutes" xml:space="preserve">
+    <value>Minutes d’inactivité (1–240)</value>
+  </data>
+  <data name="IdleHelp" xml:space="preserve">
+    <value>La lecture peut sembler inactive. Seul le temps depuis la dernière entrée est consulté; les touches, clics et contenus ne sont jamais enregistrés.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Activer les compteurs locaux (facultatif)</value>
+  </data>
+  <data name="StatisticsHelp" xml:space="preserve">
+    <value>Les compteurs mesurent les bannières, demandes de notification et confirmations. Ils ne mesurent pas les clignements réels et ne prouvent pas qu’une notification a été vue.</value>
+  </data>
+  <data name="CountFormat" xml:space="preserve">
+    <value>Bannières : {0} · Demandes : {1} · Confirmations : {2}</value>
+  </data>
+  <data name="ClearData" xml:space="preserve">
+    <value>Effacer les compteurs et diagnostics</value>
+  </data>
+  <data name="ExportSettings" xml:space="preserve">
+    <value>Exporter les préférences</value>
+  </data>
+  <data name="ImportSettings" xml:space="preserve">
+    <value>Importer les préférences</value>
+  </data>
+  <data name="ExportDiagnostics" xml:space="preserve">
+    <value>Exporter les diagnostics locaux</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Rétablir les préférences</value>
+  </data>
+  <data name="ResetConfirm" xml:space="preserve">
+    <value>Rétablir les préférences et désactiver le démarrage de cette installation?</value>
+  </data>
+  <data name="ExportHelp" xml:space="preserve">
+    <value>Les préférences exportées peuvent contenir vos messages personnalisés. Les diagnostics contiennent seulement des dates et des codes d’événement; le partage vous appartient.</value>
+  </data>
+  <data name="Imported" xml:space="preserve">
+    <value>Importation validée. Vérifiez et enregistrez pour appliquer. Le démarrage exige une autorisation distincte.</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Terminé.</value>
+  </data>
+  <data name="PrivacyBody" xml:space="preserve">
+    <value>Tout fonctionne localement : sans compte, réseau, télémétrie, caméra, microphone ni surveillance du contenu. Le verrouillage, la veille et les bureaux protégés interrompent toujours les rappels.</value>
+  </data>
+  <data name="Disclaimer" xml:space="preserve">
+    <value>Un outil de rappel d’habitudes. Ce n’est pas un dispositif médical et aucune promesse de santé n’est faite.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version 0.1.0 · MIT · Windows 11 x64</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Code source et documentation</value>
+  </data>
+  <data name="Releases" xml:space="preserve">
+    <value>Voir les versions sur GitHub</value>
+  </data>
+  <data name="ReleaseHelp" xml:space="preserve">
+    <value>Aucun outil de mise à jour intégré. L’édition Store est mise à jour par le Store. Les liens externes s’ouvrent uniquement à votre demande.</value>
+  </data>
+  <data name="PlatformNote" xml:space="preserve">
+    <value>Version initiale de validation. ARM64, installation/UAC, accessibilité et utilisation prolongée exigent encore des tests sur des appareils Windows physiques.</value>
+  </data>
+  <data name="InvalidSettings" xml:space="preserve">
+    <value>Vérifiez les jours, les heures HH:mm, les intervalles, les durées et les limites indiquées.</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>Impossible de terminer. Vérifiez les permissions du fichier et réessayez.</value>
+  </data>
+  <data name="SettingsRecovered" xml:space="preserve">
+    <value>Préférences invalides ou indisponibles. Les valeurs par défaut ont été chargées; vérifiez-les avant d’activer.</value>
+  </data>
+  <data name="NativeBlocked" xml:space="preserve">
+    <value>Notification indisponible ou bloquée par Windows. Vérifiez les paramètres de notification.</value>
+  </data>
+  <data name="PreviewSuppressed" xml:space="preserve">
+    <value>Aperçu suspendu par l’état de session ou le mode présentation.</value>
+  </data>
+  <data name="TrayUnavailable" xml:space="preserve">
+    <value>Zone de notification indisponible. Cette fenêtre reste ouverte pour permettre le contrôle de l’application.</value>
+  </data>
+  <data name="Elevated" xml:space="preserve">
+    <value>Ouvrez BlinkReminder normalement, sans l’exécuter comme administrateur.</value>
+  </data>
+  <data name="AlreadyRunning" xml:space="preserve">
+    <value>L’application est déjà en cours dans cette session. Ouvrez-la dans la zone de notification.</value>
+  </data>
+  <data name="StartupBlocked" xml:space="preserve">
+    <value>Windows n’a pas autorisé le démarrage. Vérifiez Paramètres &gt; Applications &gt; Démarrage.</value>
+  </data>
+  <data name="StartupEnabled" xml:space="preserve">
+    <value>Démarrage activé dans Windows</value>
+  </data>
+  <data name="StartupDisabled" xml:space="preserve">
+    <value>Démarrage désactivé dans Windows</value>
+  </data>
+  <data name="StartupRestricted" xml:space="preserve">
+    <value>Démarrage restreint ou appartenant à une autre installation</value>
+  </data>
+  <data name="CloseHelp" xml:space="preserve">
+    <value>Fermer conserve les rappels dans la zone de notification. Utilisez Quitter pour arrêter l’application.</value>
+  </data>
+  <data name="NativeNotificationBlocked" xml:space="preserve">
+    <value>Notification indisponible ou bloquée par Windows. Vérifiez les paramètres de notification.</value>
+  </data>
+  <data name="NativeNotificationUnavailable" xml:space="preserve">
+    <value>Notification indisponible ou bloquée par Windows. Vérifiez les paramètres de notification.</value>
+  </data>
+  <data name="NativeNotificationFailed" xml:space="preserve">
+    <value>Notification indisponible ou bloquée par Windows. Vérifiez les paramètres de notification.</value>
+  </data>
+  <data name="BannerFailed" xml:space="preserve">
+    <value>Impossible de terminer. Vérifiez les permissions du fichier et réessayez.</value>
+  </data>
+  <data name="SessionStateUnavailable" xml:space="preserve">
+    <value>Aperçu suspendu par l’état de session ou le mode présentation.</value>
+  </data>
+</root>

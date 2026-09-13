@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+.vs/
+.idea/
+TestResults/
+artifacts/
+.tools/
+*.user
+*.suo
+*.pfx
+*.p12
+*.key
+*.cer
+*.pem
+.DS_Store
+branding.local.json
+store.local.json

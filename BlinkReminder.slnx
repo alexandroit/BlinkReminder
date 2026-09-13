@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BlinkReminder.Core/BlinkReminder.Core.csproj" />
+    <Project Path="src/BlinkReminder.Windows/BlinkReminder.Windows.csproj" />
+    <Project Path="src/BlinkReminder.App/BlinkReminder.App.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BlinkReminder.Core.Tests/BlinkReminder.Core.Tests.csproj" />
+    <Project Path="tests/BlinkReminder.Windows.Tests/BlinkReminder.Windows.Tests.csproj" />
+  </Folder>
+</Solution>
