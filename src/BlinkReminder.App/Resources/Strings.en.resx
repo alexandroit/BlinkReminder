@@ -160,7 +160,7 @@
     <value>Interval (minutes, 1–1440)</value>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Duration (seconds, 2–600)</value>
+    <value>Banner duration (seconds, 2–600)</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Message (up to 240 characters)</value>
@@ -235,7 +235,7 @@
     <value>Optional sound</value>
   </data>
   <data name="BannerHelp" xml:space="preserve">
-    <value>The banner passes clicks through and never takes focus. Actions are available here and in the tray. Notifications follow Windows preferences, with no automatic banner fallback.</value>
+    <value>The banner passes clicks through and never takes focus. Actions are available here and in the tray. Notifications follow Windows preferences, with no automatic banner fallback. Windows controls notification duration; countdowns apply to banners only.</value>
   </data>
   <data name="EnableSchedule" xml:space="preserve">
     <value>Limit to the days and times below</value>

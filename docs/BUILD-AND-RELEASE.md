@@ -40,13 +40,13 @@ The product version comes from `Directory.Build.props`. MSIX adds a fourth `.0` 
 
 Both .NET and the selected Windows App SDK components are bundled. Foundation 2.3.9 and InteractiveExperiences 2.1.6 are taken from stable Windows App SDK 2.4.0; unused AI/ML, WinUI, WebView and Search components are excluded. Framework security patches are not automatically inherited from a separately installed runtime: update the pins, review dependencies, rebuild and retest both installers when servicing releases are available. Do not strip, trim or force single-file publishing without validating WPF and Windows App SDK requirements.
 
-NuGet direct versions are pinned in `Directory.Packages.props`, and project lockfiles pin the resolved dependency graphs. Normal restore and publish use locked mode. For an intentional dependency update, run `./build/Restore.ps1 -UpdateLockFiles`, review every lockfile diff and commit it alongside the version change. `dotnet list BlinkReminder.slnx package --vulnerable --include-transitive` is an available dependency review command, requiring access to advisory metadata.
+NuGet direct versions are pinned in `Directory.Packages.props`, and project lockfiles pin the resolved dependency graphs. Normal restore uses locked mode, and publish reuses that restored graph without restoring again. For an intentional dependency update, run `./build/Restore.ps1 -UpdateLockFiles`, review every lockfile diff and commit it alongside the version change. `dotnet list BlinkReminder.slnx package --vulnerable --include-transitive` is an available dependency review command, requiring access to advisory metadata.
 
 ## Unsigned CI
 
 `.github/workflows/windows-ci.yml` builds and tests on a Windows runner and uploads EXE/MSIX engineering artifacts. It has read-only repository permissions and no signing or Store credentials. It also installs, upgrades, checks observable opposite-scope conflicts and uninstalls the EXE on the disposable runner. `artifacts/test-results/installer-smoke.json` records whether the runner already had administrator privileges. This is not an interactive UAC test or proof of ordinary-user behavior. To run the same destructive-to-test-installation check manually on a clean disposable machine, use `./build/Test-Installer.ps1 -DisposableMachine`. It refuses an existing app installation or directory.
 
-It never creates a GitHub Release or submits to a store. Action implementations are pinned by commit.
+It never creates a GitHub Release or submits to a store. Action implementations are pinned by commit to verified stable releases: checkout 7.0.1, setup-dotnet 6.0.0 and upload-artifact 7.0.1. These use Node 24; a self-hosted replacement must meet their runner requirements (at least 2.327.1 for checkout).
 
 ## Direct-distribution signatures
 

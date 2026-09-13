@@ -6,7 +6,7 @@ $destination = Get-PublishDirectory
 if (Test-Path $destination) { Remove-Item $destination -Recurse -Force }
 Push-Location $RepositoryRoot
 try {
-    Invoke-Checked dotnet @('publish', 'src/BlinkReminder.App/BlinkReminder.App.csproj', '-c', 'Release', '-r', 'win-x64', '--self-contained', 'true', '-p:RestoreLockedMode=true', '-p:PublishSingleFile=false', '-p:PublishTrimmed=false', '-o', $destination)
+    Invoke-Checked dotnet @('publish', 'src/BlinkReminder.App/BlinkReminder.App.csproj', '-c', 'Release', '--no-restore', '-o', $destination)
     $runtimeConfig = Get-Content (Join-Path $destination 'BlinkReminder.runtimeconfig.json') -Raw | ConvertFrom-Json
     foreach ($frameworkName in @('Microsoft.NETCore.App', 'Microsoft.WindowsDesktop.App')) {
         $framework = @($runtimeConfig.runtimeOptions.includedFrameworks | Where-Object name -eq $frameworkName)

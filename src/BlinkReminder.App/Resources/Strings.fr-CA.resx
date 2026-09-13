@@ -160,7 +160,7 @@
     <value>Intervalle (minutes, 1–1440)</value>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Durée (secondes, 2–600)</value>
+    <value>Durée de la bannière (secondes, 2–600)</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Message (240 caractères maximum)</value>
@@ -235,7 +235,7 @@
     <value>Son facultatif</value>
   </data>
   <data name="BannerHelp" xml:space="preserve">
-    <value>La bannière laisse passer les clics et ne prend pas le focus. Les actions sont accessibles ici et dans la zone de notification. Les notifications suivent les préférences Windows, sans basculer automatiquement vers une bannière.</value>
+    <value>La bannière laisse passer les clics et ne prend pas le focus. Les actions sont accessibles ici et dans la zone de notification. Les notifications suivent les préférences Windows, sans basculer automatiquement vers une bannière. Windows contrôle la durée des notifications; les comptes à rebours concernent uniquement les bannières.</value>
   </data>
   <data name="EnableSchedule" xml:space="preserve">
     <value>Limiter aux jours et heures ci-dessous</value>

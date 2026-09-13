@@ -39,7 +39,12 @@ Reference and consultation date: **2026-09-13**. Stable releases are required. R
 | [Inno install-mode overrides](https://jrsoftware.org/ishelp/topic_setup_privilegesrequiredoverridesallowed.htm) | Not shown | Supported scope dialog, CURRENTUSER and ALLUSERS |
 | [Inno previous scope](https://jrsoftware.org/ishelp/topic_setup_usepreviousprivileges.htm) | Not shown | Upgrade install-mode preservation |
 | [Inno architecture identifiers](https://jrsoftware.org/ishelp/topic_archidentifiers.htm) | Not shown | Native x64-only qualification boundary |
+| [actions/checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) | 2026-07-20 | Current stable action, pinned commit 3d3c42e5aac5ba805825da76410c181273ba90b1 |
+| [actions/setup-dotnet v6.0.0](https://github.com/actions/setup-dotnet/releases/tag/v6.0.0) | 2026-07-16 | Current stable action, pinned commit a98b56852c35b8e3190ac28c8c2271da59106c68 |
+| [actions/upload-artifact v7.0.1](https://github.com/actions/upload-artifact/releases/tag/v7.0.1) | 2026-04-10 | Current stable action, pinned commit 043fb46d1a93c77aae656e7c1c64a875d1fc6a0a |
 | [Windows app icon construction](https://learn.microsoft.com/en-us/windows/apps/design/iconography/app-icon-construction) | Not recorded | Validate real icon resources; do not equate manifest assets with Store listing images |
+
+The action versions above were checked against the official latest stable release endpoints, exact commit targets and each release's `action.yml` on 2026-09-13. All three use Node 24. Checkout documents a minimum Actions Runner of 2.327.1; the workflows use the maintained GitHub-hosted `windows-2025` image, not an older self-hosted runner.
 
 ## Validation boundaries
 

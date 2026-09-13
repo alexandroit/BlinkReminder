@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using BlinkReminder.App;
 using BlinkReminder.App.Services;
@@ -71,6 +72,8 @@ public sealed class WindowConstructionTests
             ThemeService.Apply(AppTheme.Light);
             var viewModel = new MainViewModel(settings, store, host, statistics, diagnostics,
                 new WindowsStartupAdapter(false, Path.Combine(directory, "BlinkReminder.exe")), () => { });
+            viewModel.AddQuietCommand.Execute(null);
+            Assert.Single(viewModel.QuietPeriods);
             window = new MainWindow(viewModel, () => false)
             {
                 ShowActivated = false,
@@ -104,6 +107,7 @@ public sealed class WindowConstructionTests
                         var content = Assert.IsAssignableFrom<FrameworkElement>(tab.Content);
                         Assert.True(content.IsLoaded);
                         Assert.Same(viewModel, content.DataContext);
+                        CaptureContentRender(window, language, theme, index);
                     }
                 }
             }
@@ -160,6 +164,40 @@ public sealed class WindowConstructionTests
             yield return child;
             foreach (var descendant in VisualDescendants(child)) yield return descendant;
         }
+    }
+
+    private static void CaptureContentRender(Window window, string language, AppTheme theme, int tabIndex)
+    {
+        string? workspace = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
+        if (string.IsNullOrWhiteSpace(workspace) || tabIndex is not (0 or 1)) return;
+        bool selectedAppearance = (language == "en" && theme == AppTheme.Dark)
+            || (language is "pt-BR" or "fr-CA" && theme == AppTheme.Light);
+        if (!selectedAppearance) return;
+
+        // Render the content as a new visual root. The hidden test Window's opacity is
+        // outside this root; no HWND or physical desktop screenshot is captured.
+        var content = (FrameworkElement)window.Content;
+        int width = Math.Max(1, (int)Math.Ceiling(content.ActualWidth));
+        int height = Math.Max(1, (int)Math.Ceiling(content.ActualHeight));
+        var bitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
+        var background = new DrawingVisual();
+        using (var drawing = background.RenderOpen())
+            drawing.DrawRectangle(window.Background, null, new Rect(0, 0, width, height));
+        bitmap.Render(background);
+        bitmap.Render(content);
+        bitmap.Freeze();
+
+        string directory = Path.Combine(Path.GetFullPath(workspace), "artifacts", "test-results", "ui-render");
+        Directory.CreateDirectory(directory);
+        string tab = tabIndex == 0 ? "overview" : "reminders";
+        string path = Path.Combine(directory, $"ui-render-{language}-{theme.ToString().ToLowerInvariant()}-{tab}.png");
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        using (var output = File.Create(path)) encoder.Save(output);
+        File.WriteAllText(Path.Combine(directory, "README.txt"),
+            "These PNG files are 96-DPI WPF content renders produced by the application construction test.\n" +
+            "They show actual loaded markup, bindings, resources, and themes. They are not desktop captures.\n" +
+            "They do not establish focus, accessibility, multi-monitor, native-notification, or installation behavior.\n");
     }
 
     private sealed class BindingErrorListener : TraceListener

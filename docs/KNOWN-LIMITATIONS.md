@@ -13,7 +13,7 @@ BlinkReminder is an early Windows desktop application. Source publication is not
 
 `SHQueryUserNotificationState` detects some presentation and busy states. It is not a complete query of every current Windows Do not disturb rule. Unknown or failed state queries suppress reminders conservatively. Choose native Windows notifications when Windows should make the final presentation decision.
 
-Native notification submission means only that Windows accepted a request. It does not prove display, reading, or a real blink. Blocked notifications do not fall back automatically to a banner. Registration and submission failures are reported without discarding settings.
+Native notification submission means only that Windows accepted a request. It does not prove display, reading, or a real blink. Blocked notifications do not fall back automatically to a banner. Windows controls native-notification duration; configurable duration and countdown apply to the custom banner. Registration and submission failures are reported without discarding settings.
 
 The banner uses a small layered, nonactivating tool window. Click-through requires both the native layered/transparent styles and input handling; visual transparency alone is insufficient. The automated HWND test checks styles and a hidden positioning operation. It does not prove behavior while someone types in another application. A passive banner is not a substitute for the accessible main window or native notification mode.
 

@@ -160,7 +160,7 @@
     <value>Intervalo (minutos, 1–1440)</value>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Duração (segundos, 2–600)</value>
+    <value>Duração do banner (segundos, 2–600)</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Mensagem (até 240 caracteres)</value>
@@ -235,7 +235,7 @@
     <value>Som opcional</value>
   </data>
   <data name="BannerHelp" xml:space="preserve">
-    <value>O banner deixa os cliques passarem e não recebe foco. As ações ficam nesta janela e na bandeja. Notificações seguem as preferências do Windows, sem troca automática para banner.</value>
+    <value>O banner deixa os cliques passarem e não recebe foco. As ações ficam nesta janela e na bandeja. Notificações seguem as preferências do Windows, sem troca automática para banner. O Windows controla a duração das notificações; a contagem regressiva é exclusiva do banner.</value>
   </data>
   <data name="EnableSchedule" xml:space="preserve">
     <value>Limitar aos dias e horários abaixo</value>
