@@ -11,7 +11,7 @@ BlinkReminder is a per-user Windows desktop application. The application process
 | `BlinkReminder.App` | WPF windows, accessible settings, localized resources, tray actions, banner presentation, and the application lifecycle. Maps Windows state into the core scheduler. |
 | `BlinkReminder.Core.Tests` | Deterministic time, schedule, storage, validation, and privacy tests that can run without Windows. |
 | `BlinkReminder.Windows.Tests` | Windows integration contracts and adapter tests. These do not replace interactive desktop acceptance testing. |
-| `BlinkReminder.App.Tests` | Loads actual WPF resources, all tabs and a quiet-period template across three languages and themes; checks draft validation and produces optional CI content renders. |
+| `BlinkReminder.App.Tests` | Loads actual WPF resources, all tabs and a quiet-period template across three languages and themes; checks draft validation and supports optional local content renders. |
 
 The EXE and MSIX channels publish the same application. `ApplicationPaths` and `WindowsStartupAdapter` select the appropriate integration from the process package identity. Display branding is independent from the stable technical identity used for startup, packaging, and single-instance coordination.
 

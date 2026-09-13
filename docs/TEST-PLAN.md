@@ -86,3 +86,9 @@ Initial results: **CPU not measured; memory not measured; long-duration stabilit
 ## Release gates
 
 Automated build/test success, signed artifact verification, Store certification and interactive acceptance are separate gates. Do not label ARM64, Store approval, multi-user/UAC behavior, mixed-DPI focus behavior, or accessibility as passed based only on compilation. Development packages and placeholder branding are not production-signed public releases. Record unresolved checks in [Known limitations](KNOWN-LIMITATIONS.md).
+
+## WPF construction and optional local renders
+
+`BlinkReminder.App.Tests` loads the actual application resources and all six settings tabs, including a quiet-period editor, across three languages and three themes. It checks bindings and rejects invalid numeric drafts without saving or authorizing startup. The test does not run application startup or register notifications.
+
+Content renders are opt-in and local. To inspect them on a Windows development machine, set `BLINK_UI_RENDER_DIRECTORY` to a directory you choose before running the App tests. The application content is rendered at 96 DPI; these images are not evidence of keyboard focus, physical display scaling or screen-reader behavior. CI does not enable or upload image renders. Final branding and Store images require separate approval.

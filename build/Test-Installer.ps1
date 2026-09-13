@@ -21,7 +21,8 @@ $administrator = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Ad
 function Run-Setup {
     param([string]$Scope, [string]$LogName, [bool]$ExpectSuccess = $true)
     $logPath = Join-Path $resultsDirectory "$LogName.log"
-    $arguments = @("/$Scope", '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NORESTARTAPPLICATIONS', "/LOG=`"$logPath`"")
+    $arguments = @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NORESTARTAPPLICATIONS', "/LOG=`"$logPath`"")
+    if ($Scope) { $arguments = @("/$Scope") + $arguments }
     $process = Start-Process $installer -ArgumentList $arguments -Wait -PassThru
     if ($ExpectSuccess -and $process.ExitCode -ne 0) { throw "$LogName failed with exit code $($process.ExitCode)." }
     if (-not $ExpectSuccess -and $process.ExitCode -eq 0) { throw "$LogName accepted a conflicting install scope." }
@@ -39,7 +40,7 @@ function Remove-TestInstallation {
 try {
     Run-Setup CURRENTUSER 'current-user-install'
     if (-not (Test-Path "$userDirectory/BlinkReminder.exe") -or -not (Test-Path $userKey) -or (Test-Path $machineKey)) { throw 'Current-user install paths or registry scope are incorrect.' }
-    Run-Setup CURRENTUSER 'current-user-upgrade'
+    Run-Setup '' 'current-user-upgrade'
     if (-not (Test-Path "$userDirectory/BlinkReminder.exe") -or (Test-Path $machineKey)) { throw 'Current-user upgrade changed scope.' }
     if ($administrator) {
         Run-Setup ALLUSERS 'reject-global-over-user' $false
@@ -52,7 +53,7 @@ try {
     if ($administrator) {
         Run-Setup ALLUSERS 'all-users-install'
         if (-not (Test-Path "$machineDirectory/BlinkReminder.exe") -or -not (Test-Path $machineKey) -or (Test-Path $userKey)) { throw 'All-users paths or registry scope are incorrect.' }
-        Run-Setup ALLUSERS 'all-users-upgrade'
+        Run-Setup '' 'all-users-upgrade'
         Run-Setup CURRENTUSER 'reject-user-over-global' $false
         if (Test-Path $userKey) { throw 'Cross-scope rejection left a user registration.' }
         Remove-TestInstallation $machineDirectory

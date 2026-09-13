@@ -14,7 +14,8 @@ try {
             throw "Expected bundled $frameworkName $($Tools.dotnetRuntime). Check the pinned SDK and published runtime configuration."
         }
     }
-    Copy-Item LICENSE, THIRD-PARTY-NOTICES.md $destination
+    Copy-Item LICENSE $destination
+    Copy-Item docs/THIRD-PARTY-NOTICES.md (Join-Path $destination 'THIRD-PARTY-NOTICES.md')
     & "$PSScriptRoot/Collect-Licenses.ps1"
     if (-not (Test-Path (Join-Path $destination 'BlinkReminder.exe'))) { throw 'App executable missing.' }
     if (-not (Test-Path (Join-Path $destination 'coreclr.dll'))) { throw '.NET self-contained runtime missing.' }

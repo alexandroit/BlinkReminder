@@ -85,6 +85,7 @@ public sealed class WindowConstructionTests
             window.Show();
             await SettleLayoutAsync(window);
             Assert.True(window.IsLoaded);
+            Assert.Equal(14, window.FontSize);
             Assert.Equal("BlinkReminder", Localizer.Current["AppName"]);
             Assert.Equal(Localizer.Current["AppName"], window.Title);
 
@@ -96,6 +97,8 @@ public sealed class WindowConstructionTests
                 foreach (AppTheme theme in new[] { AppTheme.Light, AppTheme.Dark, AppTheme.System })
                 {
                     ThemeService.Apply(theme);
+                    Assert.Same(application.FindResource("WindowBrush"), window.Background);
+                    Assert.Same(application.FindResource("TextBrush"), window.Foreground);
                     foreach (string key in new[] { "WindowBrush", "SurfaceBrush", "TextBrush", "MutedBrush", "BorderBrush", "AccentBrush" })
                         Assert.IsAssignableFrom<Brush>(application.FindResource(key));
                     for (int index = 0; index < tabs.Items.Count; index++)
@@ -168,8 +171,8 @@ public sealed class WindowConstructionTests
 
     private static void CaptureContentRender(Window window, string language, AppTheme theme, int tabIndex)
     {
-        string? workspace = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
-        if (string.IsNullOrWhiteSpace(workspace) || tabIndex is not (0 or 1)) return;
+        string? outputDirectory = Environment.GetEnvironmentVariable("BLINK_UI_RENDER_DIRECTORY");
+        if (string.IsNullOrWhiteSpace(outputDirectory) || tabIndex is not (0 or 1)) return;
         bool selectedAppearance = (language == "en" && theme == AppTheme.Dark)
             || (language is "pt-BR" or "fr-CA" && theme == AppTheme.Light);
         if (!selectedAppearance) return;
@@ -182,12 +185,22 @@ public sealed class WindowConstructionTests
         var bitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
         var background = new DrawingVisual();
         using (var drawing = background.RenderOpen())
-            drawing.DrawRectangle(window.Background, null, new Rect(0, 0, width, height));
+        {
+            var bounds = new Rect(0, 0, width, height);
+            drawing.DrawRectangle(window.Background, null, bounds);
+            // Explicit local coordinates exclude the content's margin offset in its parent.
+            var contentBrush = new VisualBrush(content)
+            {
+                ViewboxUnits = BrushMappingMode.Absolute,
+                Viewbox = bounds,
+                Stretch = Stretch.Fill
+            };
+            drawing.DrawRectangle(contentBrush, null, bounds);
+        }
         bitmap.Render(background);
-        bitmap.Render(content);
         bitmap.Freeze();
 
-        string directory = Path.Combine(Path.GetFullPath(workspace), "artifacts", "test-results", "ui-render");
+        string directory = Path.GetFullPath(outputDirectory);
         Directory.CreateDirectory(directory);
         string tab = tabIndex == 0 ? "overview" : "reminders";
         string path = Path.Combine(directory, $"ui-render-{language}-{theme.ToString().ToLowerInvariant()}-{tab}.png");
