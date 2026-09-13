@@ -27,12 +27,12 @@ Outputs:
 | `artifacts/publish/win-x64/` | Self-contained application folder, including both runtimes |
 | `artifacts/installers/BlinkReminder-0.1.0-win-x64-setup.exe` | Direct installer, unsigned unless explicit signing was used |
 | `artifacts/installers/BlinkReminder-0.1.0.0-win-x64-development-unsigned.msix` | Unsigned development package; not a Store submission |
-| `artifacts/installers/artifact-manifest.json` | Actual artifact sizes, SHA-256 values and installed file bytes |
+| `artifacts/installers/artifact-manifest.json` | Actual artifact sizes, SHA-256 values, source commit and published payload bytes |
 | `artifacts/test-results/` | Test results in TRX format |
 
 Publish also collects original license/notice files from restored NuGet packages and the bundled .NET runtime packs into `Licenses/`, together with an index of restored dependencies. That index includes build dependencies and does not imply that each listed package ships runtime code. Missing required runtime license files stop publication staging.
 
-The manifest measures file bytes; filesystem allocation, OS deduplication and per-user data can change actual disk usage. CI artifacts and logs are the evidence of a particular build. Compilation alone does not validate UAC, user switching, Store certification, screen-reader behavior or the passive banner on a real desktop.
+The manifest's `publishedPayloadBytes` measures the publish folder, not an installed application. The installer smoke report separately records `installedFileBytes` and `installedFileCount` from each actual installation directory, including the uninstaller. These are logical file lengths; filesystem allocation, OS deduplication and per-user data can change disk usage. CI artifacts and logs are the evidence of a particular build. Compilation alone does not validate UAC, user switching, Store certification, screen-reader behavior or the passive banner on a real desktop.
 
 ## Version and dependency maintenance
 

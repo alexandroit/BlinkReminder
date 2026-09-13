@@ -28,6 +28,18 @@ function Run-Setup {
     if (-not $ExpectSuccess -and $process.ExitCode -eq 0) { throw "$LogName accepted a conflicting install scope." }
     $checks.Add([ordered]@{ check = $LogName; passed = $true; exitCode = $process.ExitCode })
 }
+function Record-InstalledFootprint {
+    param([string]$Scope, [string]$Directory)
+    $files = @(Get-ChildItem $Directory -File -Recurse -Force)
+    $bytes = ($files | Measure-Object Length -Sum).Sum
+    $checks.Add([ordered]@{
+        check = "$Scope-footprint"
+        passed = $true
+        installedFileBytes = [long]$bytes
+        installedFileCount = $files.Count
+        includesUninstaller = $true
+    })
+}
 function Remove-TestInstallation {
     param([string]$Directory)
     $uninstaller = Join-Path $Directory 'unins000.exe'
@@ -40,6 +52,7 @@ function Remove-TestInstallation {
 try {
     Run-Setup CURRENTUSER 'current-user-install'
     if (-not (Test-Path "$userDirectory/BlinkReminder.exe") -or -not (Test-Path $userKey) -or (Test-Path $machineKey)) { throw 'Current-user install paths or registry scope are incorrect.' }
+    Record-InstalledFootprint 'current-user' $userDirectory
     Run-Setup '' 'current-user-upgrade'
     if (-not (Test-Path "$userDirectory/BlinkReminder.exe") -or (Test-Path $machineKey)) { throw 'Current-user upgrade changed scope.' }
     if ($administrator) {
@@ -53,6 +66,7 @@ try {
     if ($administrator) {
         Run-Setup ALLUSERS 'all-users-install'
         if (-not (Test-Path "$machineDirectory/BlinkReminder.exe") -or -not (Test-Path $machineKey) -or (Test-Path $userKey)) { throw 'All-users paths or registry scope are incorrect.' }
+        Record-InstalledFootprint 'all-users' $machineDirectory
         Run-Setup '' 'all-users-upgrade'
         Run-Setup CURRENTUSER 'reject-user-over-global' $false
         if (Test-Path $userKey) { throw 'Cross-scope rejection left a user registration.' }

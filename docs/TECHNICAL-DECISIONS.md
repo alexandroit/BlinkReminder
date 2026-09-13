@@ -30,6 +30,7 @@ Reference and consultation date: **2026-09-13**. Stable releases are required. R
 | [Packaged desktop execution](https://learn.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-behind-the-scenes) | 2025-09-09 | Per-user package registration and read-only package files |
 | [Packaging overview](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/packaging/) | 2026-08-29 | MSIX versus EXE submission/update models |
 | [First Windows app publication](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/publish-first-app) | 2026-08-29 | Separate Store and direct signing/distribution responsibilities |
+| [Sign an app package with SignTool](https://learn.microsoft.com/en-us/windows/msix/package/sign-app-package-using-signtool) | 2026-04-20 | Explicit local signing with an existing certificate, SHA-256 and verification |
 | [MakeAppx tool](https://learn.microsoft.com/en-us/windows/msix/package/create-app-package-with-makeappx-tool) | Not shown in the consulted extract | Validated package creation; MSIX differs from msixupload |
 | [desktop:StartupTask schema](https://learn.microsoft.com/en-us/uwp/schemas/appxpackage/uapmanifestschema/element-desktop-startuptask) | 2026-06-17 | Disabled-by-default startup task declaration |
 | [Extended window styles](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles) | 2025-07-14 | Non-activating tool-window banner |
