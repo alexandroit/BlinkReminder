@@ -32,8 +32,8 @@ Reference and consultation date: **2026-09-13**. Stable releases are required. R
 | [First Windows app publication](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/publish-first-app) | 2026-08-29 | Separate Store and direct signing/distribution responsibilities |
 | [MakeAppx tool](https://learn.microsoft.com/en-us/windows/msix/package/create-app-package-with-makeappx-tool) | Not shown in the consulted extract | Validated package creation; MSIX differs from msixupload |
 | [desktop:StartupTask schema](https://learn.microsoft.com/en-us/uwp/schemas/appxpackage/uapmanifestschema/element-desktop-startuptask) | 2026-06-17 | Disabled-by-default startup task declaration |
-| [Extended window styles](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles) | Not recorded | Non-activating tool-window banner |
-| [SHQueryUserNotificationState](https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shqueryusernotificationstate) | Not recorded | Documented suppression signal, without claiming perfect Do Not Disturb detection |
+| [Extended window styles](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles) | 2025-07-14 | Non-activating tool-window banner |
+| [SHQueryUserNotificationState](https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shqueryusernotificationstate) | 2025-10-31 | Documented suppression signal, without claiming perfect Do Not Disturb detection |
 | [Inno Setup stable downloads](https://jrsoftware.org/isdl.php) | Release 2026-08-12 | Inno Setup 7.1.0 x64 |
 | [Inno release and asset digest](https://github.com/jrsoftware/issrc/releases/tag/is-7_1_0) | Release 2026-08-12 | Pinned compiler installer SHA-256 |
 | [Inno install-mode overrides](https://jrsoftware.org/ishelp/topic_setup_privilegesrequiredoverridesallowed.htm) | Not shown | Supported scope dialog, CURRENTUSER and ALLUSERS |

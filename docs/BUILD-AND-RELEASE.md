@@ -44,7 +44,9 @@ NuGet direct versions are pinned in `Directory.Packages.props`, and project lock
 
 ## Unsigned CI
 
-`.github/workflows/windows-ci.yml` builds and tests on a Windows runner and uploads EXE/MSIX engineering artifacts. It has read-only repository permissions and no signing or Store credentials. It never creates a GitHub Release or submits to a store. Action implementations are pinned by commit.
+`.github/workflows/windows-ci.yml` builds and tests on a Windows runner and uploads EXE/MSIX engineering artifacts. It has read-only repository permissions and no signing or Store credentials. It also installs, upgrades, checks observable opposite-scope conflicts and uninstalls the EXE on the disposable runner. `artifacts/test-results/installer-smoke.json` records whether the runner already had administrator privileges. This is not an interactive UAC test or proof of ordinary-user behavior. To run the same destructive-to-test-installation check manually on a clean disposable machine, use `./build/Test-Installer.ps1 -DisposableMachine`. It refuses an existing app installation or directory.
+
+It never creates a GitHub Release or submits to a store. Action implementations are pinned by commit.
 
 ## Direct-distribution signatures
 

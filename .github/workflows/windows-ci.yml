@@ -38,6 +38,8 @@ jobs:
           ./build/Package-Exe.ps1
           ./build/Package-Msix.ps1
           ./build/Write-ArtifactManifest.ps1
+      - name: Smoke test installer scope on disposable runner
+        run: ./build/Test-Installer.ps1 -DisposableMachine
       - name: Upload unsigned engineering artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

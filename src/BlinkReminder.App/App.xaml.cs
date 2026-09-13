@@ -99,8 +99,17 @@ public partial class App : System.Windows.Application
             host.Start();
             UpdateTray();
             diagnostics.Write("app.started");
-            if (notificationLaunch && await notifications.GetLaunchCommandAsync() is { } launchCommand)
-                InstanceCommandReceived(this, launchCommand);
+            if (notificationLaunch)
+            {
+                var launchCommand = await notifications.GetLaunchCommandAsync();
+                if (launchCommand is null)
+                {
+                    await StopAsync();
+                    Shutdown();
+                    return;
+                }
+                InstanceCommandReceived(this, launchCommand.Value);
+            }
             bool background = args.Args.Contains("--background", StringComparer.Ordinal)
                 || (!notificationLaunch && ApplicationActivation.IsStartupLaunch());
             if (pendingOpen || !background || !settings.OnboardingCompleted || !tray.Available) OpenSettings();
@@ -169,7 +178,12 @@ public partial class App : System.Windows.Application
         if (settingsWindow is not null) settingsWindow.IsExiting = true;
         if (host is not null) await host.DisposeAsync();
         tray?.Dispose();
-        notifications?.Dispose();
+        if (notifications is not null)
+        {
+            try { await notifications.ClearAsync().WaitAsync(TimeSpan.FromSeconds(2)); }
+            catch (TimeoutException) { diagnostics?.Write("notification.cleanup_timeout"); }
+            notifications.Dispose();
+        }
         if (instance is not null) await instance.DisposeAsync();
         diagnostics?.Write("app.stopped");
     }
