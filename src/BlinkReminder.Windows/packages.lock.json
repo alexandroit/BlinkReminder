@@ -40,18 +40,6 @@
           "Microsoft.Windows.SDK.BuildTools.MSIX": "1.7.251221100"
         }
       }
-    },
-    "net10.0-windows10.0.26100/win-x64": {
-      "Microsoft.WindowsAppSDK.Foundation": {
-        "type": "Direct",
-        "requested": "[2.3.9, )",
-        "resolved": "2.3.9",
-        "contentHash": "lnfSoKvuMN2nv/NyMDWHX5u2K/tdg8AiyW+z30/YmCbJZp1k38B8/d4pKf+RjgkQbSGbIikN4irae72FXA3X5Q==",
-        "dependencies": {
-          "Microsoft.WindowsAppSDK.Base": "2.0.4",
-          "Microsoft.WindowsAppSDK.InteractiveExperiences": "2.1.3"
-        }
-      }
     }
   }
 }

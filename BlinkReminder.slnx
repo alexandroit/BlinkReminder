@@ -7,5 +7,6 @@
   <Folder Name="/tests/">
     <Project Path="tests/BlinkReminder.Core.Tests/BlinkReminder.Core.Tests.csproj" />
     <Project Path="tests/BlinkReminder.Windows.Tests/BlinkReminder.Windows.Tests.csproj" />
+    <Project Path="tests/BlinkReminder.App.Tests/BlinkReminder.App.Tests.csproj" />
   </Folder>
 </Solution>

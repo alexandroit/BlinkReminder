@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using BlinkReminder.Core;
+using BlinkReminder.App.Services;
 using BlinkReminder.Windows;
 using Microsoft.Win32;
 
@@ -22,6 +23,7 @@ public partial class BannerWindow : Window
         InitializeComponent();
         this.request = request;
         this.appearance = appearance;
+        ThemeService.Apply(appearance.Theme, Resources);
         MessageText.Text = request.Message;
         MessageText.FontSize = appearance.FontSize;
         monitorDevice = WindowPlacement.ResolveMonitor(appearance.Monitor switch

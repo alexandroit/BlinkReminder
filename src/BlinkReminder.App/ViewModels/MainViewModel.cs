@@ -21,10 +21,12 @@ public sealed class MainViewModel : ObservableObject
     private readonly WindowsStartupAdapter startup;
     private AppSettings settings;
     private string feedback = "";
-    private string startupStatus = "";
+    private StartupRegistrationState startupState = StartupRegistrationState.Unavailable;
     public AppSettings Settings => settings;
+    public AppTheme AppliedTheme { get; private set; }
     public string Feedback { get => feedback; set => Set(ref feedback, value); }
-    public string StartupStatus { get => startupStatus; private set => Set(ref startupStatus, value); }
+    public string StartupStatus => T[startupState == StartupRegistrationState.Enabled ? "StartupEnabled"
+        : startupState == StartupRegistrationState.Disabled ? "StartupDisabled" : "StartupRestricted"];
     public string BlinkInterval { get; set; } = "";
     public string BlinkDuration { get; set; } = "";
     public string BreakInterval { get; set; } = "";
@@ -100,6 +102,7 @@ public sealed class MainViewModel : ObservableObject
         this.diagnostics = diagnostics;
         this.startup = startup;
         settings = SettingsValidator.Clone(initial);
+        AppliedTheme = initial.Appearance.Theme;
         LoadEditor(settings);
         PreviewCommand = new(() => host.PreviewAsync(ReadEditor()), ReportError);
         PauseCommand = new(() => host.Pause(TimeSpan.FromMinutes(15)));
@@ -128,13 +131,14 @@ public sealed class MainViewModel : ObservableObject
     {
         Notify(nameof(PresentationModes)); Notify(nameof(Positions)); Notify(nameof(MonitorModes)); Notify(nameof(Themes));
         foreach (var day in Days.Concat(QuietPeriods.SelectMany(period => period.Days))) day.RefreshLabel();
+        Notify(nameof(StartupStatus));
         Refresh();
     }
 
     public async Task RefreshStartupAsync()
     {
-        var state = await startup.GetStateAsync();
-        StartupStatus = T[state == StartupRegistrationState.Enabled ? "StartupEnabled" : state == StartupRegistrationState.Disabled ? "StartupDisabled" : "StartupRestricted"];
+        startupState = await startup.GetStateAsync();
+        Notify(nameof(StartupStatus));
     }
 
     public async Task SaveAsync()
@@ -150,7 +154,8 @@ public sealed class MainViewModel : ObservableObject
             store.Save(candidate);
             statistics.SetEnabled(candidate.StatisticsEnabled);
             host.ApplySettings(candidate);
-            ThemeService.Apply(candidate.Appearance.Theme);
+            AppliedTheme = candidate.Appearance.Theme;
+            ThemeService.Apply(AppliedTheme);
             LoadEditor(candidate);
             diagnostics.Write("settings.saved");
             Feedback = T[startupDenied ? "StartupBlocked" : "Saved"];
@@ -240,7 +245,8 @@ public sealed class MainViewModel : ObservableObject
         statistics.SetEnabled(false);
         host.ApplySettings(defaults);
         LoadEditor(defaults);
-        ThemeService.Apply(defaults.Appearance.Theme);
+        AppliedTheme = defaults.Appearance.Theme;
+        ThemeService.Apply(AppliedTheme);
         Feedback = T["Done"];
         await RefreshStartupAsync();
     }

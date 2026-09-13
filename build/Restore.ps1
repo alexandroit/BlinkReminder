@@ -4,7 +4,7 @@ param([switch]$UpdateLockFiles)
 Assert-Windows
 Push-Location $RepositoryRoot
 try {
-    $arguments = @('restore', 'BlinkReminder.slnx', '-r', 'win-x64')
+    $arguments = @('restore', 'BlinkReminder.slnx')
     if ($UpdateLockFiles) { $arguments += '--force-evaluate' } else { $arguments += '--locked-mode' }
     Invoke-Checked dotnet $arguments
 } finally { Pop-Location }

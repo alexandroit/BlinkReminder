@@ -4,5 +4,5 @@ param([ValidateSet('Debug', 'Release')][string]$Configuration = 'Release')
 Assert-Windows
 Push-Location $RepositoryRoot
 try {
-    Invoke-Checked dotnet @('build', 'BlinkReminder.slnx', '-c', $Configuration, '-r', 'win-x64', '--no-restore')
+    Invoke-Checked dotnet @('build', 'BlinkReminder.slnx', '-c', $Configuration, '--no-restore')
 } finally { Pop-Location }

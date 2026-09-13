@@ -149,7 +149,7 @@ public partial class App : System.Windows.Application
         if (viewModel is null || host is null) return;
         bool paused = (host.Snapshot.Reasons & ~PauseReason.Presenting) != PauseReason.None;
         tray?.Update($"{viewModel.Status} · {viewModel.NextReminder}", paused);
-        currentTheme = viewModel.Settings.Appearance.Theme;
+        currentTheme = viewModel.AppliedTheme;
     }
 
     private void LanguageChanged(object? sender, PropertyChangedEventArgs args)

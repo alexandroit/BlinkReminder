@@ -7,9 +7,9 @@ namespace BlinkReminder.App.Services;
 
 public static class ThemeService
 {
-    public static void Apply(AppTheme preference)
+    public static void Apply(AppTheme preference, ResourceDictionary? target = null)
     {
-        var resources = System.Windows.Application.Current.Resources;
+        var resources = target ?? System.Windows.Application.Current.Resources;
         bool dark = preference == AppTheme.Dark || preference == AppTheme.System && IsSystemDark();
         bool contrast = SystemParameters.HighContrast;
         resources["WindowBrush"] = contrast ? SystemColors.WindowBrush : Brush(dark ? "#151A24" : "#F3F5F8");

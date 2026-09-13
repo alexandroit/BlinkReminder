@@ -21,6 +21,7 @@ public sealed class WindowsSessionStateProvider : IDisposable
         SystemEvents.PowerModeChanged += OnPowerModeChanged;
         SystemEvents.DisplaySettingsChanged += OnDisplaySettingsChanged;
         SystemEvents.UserPreferenceChanged += OnUserPreferenceChanged;
+        SystemEvents.TimeChanged += OnTimeChanged;
     }
 
     public SessionSnapshot GetSnapshot(bool includeIdle = false)
@@ -72,6 +73,12 @@ public sealed class WindowsSessionStateProvider : IDisposable
     }
 
     private void OnDisplaySettingsChanged(object? sender, EventArgs args) => Changed?.Invoke(this, EventArgs.Empty);
+    private void OnTimeChanged(object? sender, EventArgs args)
+    {
+        TimeZoneInfo.ClearCachedData();
+        Changed?.Invoke(this, EventArgs.Empty);
+    }
+
     private void OnUserPreferenceChanged(object sender, UserPreferenceChangedEventArgs args) => Changed?.Invoke(this, EventArgs.Empty);
 
     public void Dispose()
@@ -82,5 +89,6 @@ public sealed class WindowsSessionStateProvider : IDisposable
         SystemEvents.PowerModeChanged -= OnPowerModeChanged;
         SystemEvents.DisplaySettingsChanged -= OnDisplaySettingsChanged;
         SystemEvents.UserPreferenceChanged -= OnUserPreferenceChanged;
+        SystemEvents.TimeChanged -= OnTimeChanged;
     }
 }
