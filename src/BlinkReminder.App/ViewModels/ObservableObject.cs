@@ -45,7 +45,7 @@ public sealed class DayChoice(DayOfWeek value, bool selected) : ObservableObject
 {
     private bool selected = selected;
     public DayOfWeek Value { get; } = value;
-    public string Label => Localizer.Current[value.ToString()];
+    public string Label => Localizer.Current[Value.ToString()];
     public void RefreshLabel() => Notify(nameof(Label));
     public bool Selected { get => selected; set => Set(ref selected, value); }
 }
